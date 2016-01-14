@@ -18,10 +18,11 @@ package com.gitblit.wicket.pages;
 import java.util.List;
 
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Fragment;
+import org.apache.wicket.model.Model;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 
@@ -82,6 +83,8 @@ public class DocPage extends RepositoryPage {
 			fragment = new Fragment("doc", "plainContent", this);
 		} else {
 			fragment = new Fragment("doc", "markupContent", this);
+			
+			addBottomScriptInline("var simplemde = new SimpleMDE({ autoDownloadFontAwesome:false, element: document.getElementById('markdown'), spellChecker:false });");
 		}
 
 		// document page links
@@ -92,7 +95,7 @@ public class DocPage extends RepositoryPage {
 		String rawUrl = RawServlet.asLink(getContextUrl(), repositoryName, objectId, documentPath);
 		fragment.add(new ExternalLink("rawLink", rawUrl));
 
-		fragment.add(new Label("content", markupDoc.html).setEscapeModelStrings(false));
+		fragment.add(new TextArea("content", Model.of(markupDoc.markup)).setEscapeModelStrings(false));
 		add(fragment);
 	}
 
