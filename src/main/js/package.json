@@ -15,7 +15,7 @@
     "build:js-min": "browserify editor.dev.js | uglifyjs --compress --mangle -o ../resources/gitblit-editor.min.js",
 	"build:css":"suitcss editor.dev.css ../resources/gitblit-editor.css",
 	"build:css-min":"suitcss -m editor.dev.css ../resources/gitblit-editor.min.css",
-    "postinstall": "cd simplemde && npm install --production"
+    "postinstall": "cd simplemde && npm install"
   },
   "browser": {
     "CodeMirror": "./codemirror/lib/codemirror.js",
