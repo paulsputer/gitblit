@@ -14,29 +14,45 @@
 <wicket:extend>
 <div wicket:id="doc"></div>
 <wicket:fragment wicket:id="markupContent">
-<div class="docs">
+	<div class="docs" style="margin-top: -10px;">
 	
 		<!-- doc nav links -->	
-		<div style="float: right;position: relative;z-index: 2;margin-top: 1px;" class="docnav">
+		<div style="float: right;position: relative;z-index: 2;margin-top: 6px;border-radius: 0px 3px 0px 3px;" class="docnav">
 			<a wicket:id="blameLink"><wicket:message key="gb.blame"></wicket:message></a>  | <a wicket:id="historyLink"><wicket:message key="gb.history"></wicket:message></a> | <a wicket:id="rawLink"><wicket:message key="gb.raw"></wicket:message></a>
-		</div>	
+		</div>
 	
-		<!--  document content -->
-		<textarea id="markdown" wicket:id="content">[content]</textarea>
+		<form id="documentEditor" style="padding-top:5px;" wicket:id="documentEditor">
+			<textarea id="editor" wicket:id="content">[content]</textarea>
 		
-</div>
+			<div id="commitDialog" class="modal hide fade">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			    <h3>Commit Document Changes</h3>
+			  </div>
+			  <div class="modal-body">
+		  		<div wicket:id="commitAuthor"></div>
+		    	<textarea style="width:100%; resize:none" wicket:id="commitMessage"></textarea>
+			  </div>
+			  <div class="modal-footer">
+			    <a href="#" data-dismiss="modal" class="btn">Continue editing</a>
+			    <a href="#" onclick="commitChanges()" class="btn btn-primary">Commit changes</a>
+			  </div>
+			</div>
+		</form>
+		
+	</div>
 </wicket:fragment>
 
 <wicket:fragment wicket:id="plainContent">
-<div class="docs">
-		<!-- doc nav links -->	
-		<div style="float: right;" class="docnav">
-			<a wicket:id="blameLink"><wicket:message key="gb.blame"></wicket:message></a>  | <a wicket:id="historyLink"><wicket:message key="gb.history"></wicket:message></a> | <a wicket:id="rawLink"><wicket:message key="gb.raw"></wicket:message></a>
-		</div>	
-	
-		<!--  document content -->
-		<div wicket:id="content">[content]</div>
-</div>
+	<div class="docs">
+			<!-- doc nav links -->	
+			<div style="float: right;" class="docnav">
+				<a wicket:id="blameLink"><wicket:message key="gb.blame"></wicket:message></a>  | <a wicket:id="historyLink"><wicket:message key="gb.history"></wicket:message></a> | <a wicket:id="rawLink"><wicket:message key="gb.raw"></wicket:message></a>
+			</div>	
+
+			<!--  document content -->
+			<div wicket:id="content">[content]</div>
+	</div>
 </wicket:fragment>
 
 </wicket:extend>

@@ -6,3 +6,8 @@
 	/* Allow full screen to hide Gitblit header bar */
 	z-index: 1050!important;
 }
+
+
+.CodeMirror {
+    height: 60vh;
+}
